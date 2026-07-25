@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <section>
+    <h2>Completion History</h2>
+    {% if not completions %}
+      <p>No completions recorded yet.</p>
+    {% else %}
+      <table class="history-table">
+        <thead><tr><th>When</th><th>Habit</th><th>Remark</th></tr></thead>
+        <tbody>
+        {% for c in completions %}
+          <tr>
+            <td>{{ c.completed_at }}</td>
+            <td>{{ c.name or c.habit_id }}</td>
+            <td>{{ c.remark or '-' }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </section>
+{% endblock %}

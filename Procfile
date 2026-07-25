@@ -1,0 +1,1 @@
+web: gunicorn "habit_tracker.web:create_app()"

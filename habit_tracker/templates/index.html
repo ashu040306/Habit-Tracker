@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <section class="top-controls">
+    <div class="welcome">
+      <h2>Hi — celebrate the small wins today</h2>
+      <p class="lead">Add a habit and mark it complete to build momentum.</p>
+    </div>
+    <form action="/add" method="post" class="add-form">
+      <input name="name" placeholder="Habit name" required>
+      <input name="description" placeholder="Description (optional)">
+      <button type="submit" class="btn primary">Add Habit</button>
+    </form>
+  </section>
+
+  <section class="chart-wrap">
+    <canvas id="streakChart" height="120"></canvas>
+  </section>
+
+  <section class="grid">
+    {% if not habits %}
+      <div class="empty-card">
+        <h3>No habits yet</h3>
+        <p>Start by adding one above — try a 2-minute habit you can do today.</p>
+      </div>
+    {% else %}
+      {% for h in habits %}
+        <article class="card">
+          <div class="card-head">
+            <h3 class="habit-name">{{ h.name }}</h3>
+            <div class="streak">🔥 {{ h.streak or 0 }}</div>
+          </div>
+          <p class="desc">{{ h.description or '—' }}</p>
+          <div class="card-actions">
+            <button class="btn success js-complete" data-id="{{ h.id }}">Complete</button>
+            <form action="/delete/{{ h.id }}" method="post">
+              <button class="btn danger">Delete</button>
+            </form>
+          </div>
+          <div class="meta small">Last: {{ h.last_completed or '-' }}</div>
+        </article>
+      {% endfor %}
+    {% endif %}
+  </section>
+
+{% endblock %}

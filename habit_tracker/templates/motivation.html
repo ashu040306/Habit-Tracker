@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <section>
+    <h2>Motivation</h2>
+    <p class="lead">Listen to short motivational speeches to keep momentum.</p>
+    <div class="speech-list">
+      {% for s in speeches %}
+        <div class="speech-card">
+          <p class="speech-text">{{ s }}</p>
+          <button class="btn primary js-play" data-text="{{ s }}">Play</button>
+        </div>
+      {% endfor %}
+    </div>
+    <div style="margin-top:16px">
+      <button class="btn" id="play-random">Play Random Speech</button>
+    </div>
+  </section>
+{% endblock %}

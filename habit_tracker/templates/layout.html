@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HabitTracker — Build Better Habits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/static/main.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>HabitTracker</h1>
+          <p class="tag">Build Better Habits</p>
+          <p class="tag" style="font-size:0.9rem;margin-top:8px;opacity:0.9">Small actions. Big change.</p>
+        </div>
+        <div class="motivator">
+          <h3 id="motivational-quote">Keep going — progress builds one day at a time.</h3>
+          <p class="sub">Streaks reward consistency. You've got this.</p>
+        </div>
+        <div class="theme-controls">
+          <label class="toggle-row"> 
+            <span class="toggle-label">Theme</span>
+            <button id="theme-toggle" class="btn">Toggle</button>
+          </label>
+          <div class="color-pickers">
+            <label class="cp"><span>Accent</span><input type="color" id="accent-picker" value="#6d28d9"></label>
+            <label class="cp"><span>Accent 2</span><input type="color" id="accent2-picker" value="#06b6d4"></label>
+          </div>
+        </div>
+        <footer class="side-foot">Made with care • Track your wins</footer>
+      </aside>
+
+      <main class="main-content">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flashes">
+            {% for m in messages %}
+              <div class="flash">{{ m }}</div>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>
