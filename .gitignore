@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+instance/
+habit_tracker/instance/
+.pytest_cache/
